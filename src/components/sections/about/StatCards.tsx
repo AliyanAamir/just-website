@@ -1,8 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { STATS } from "./constants";
 import { fadeUp, staggerContainer } from "@/lib/animations/variants";
+
+const STATS = [
+  { value: "12+", label: "Years Experience", description: "Building on the web since before Tailwind existed." },
+  { value: "80+", label: "Projects Shipped",  description: "Each one better than the last." },
+  { value: "4.9★", label: "Average Rating",   description: "On Clutch, Google, and word of mouth." },
+];
 
 export function StatCards() {
   return (
@@ -17,12 +22,15 @@ export function StatCards() {
         <motion.div
           key={stat.label}
           variants={fadeUp}
-          className="bg-bg-surface rounded-2xl p-7 border border-text-muted/10 shadow-sm"
+          className="group border border-text-muted/10 rounded-2xl p-8 flex items-start gap-6 hover:border-accent-lavender/30 transition-all duration-500 hover:bg-accent-lavender/[0.03]"
         >
-          <div className="font-display font-bold text-5xl text-accent-lavender mb-1">
+          <div className="font-display font-extrabold text-6xl leading-none text-accent-lavender min-w-[120px]">
             {stat.value}
           </div>
-          <div className="text-text-secondary text-sm font-medium">{stat.label}</div>
+          <div>
+            <div className="font-display font-bold text-lg text-text-primary mb-1">{stat.label}</div>
+            <div className="text-text-secondary text-sm leading-relaxed font-body">{stat.description}</div>
+          </div>
         </motion.div>
       ))}
     </motion.div>

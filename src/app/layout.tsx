@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Inter } from "next/font/google";
+import { Syne, Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { IntroAnimation } from "@/components/layout/IntroAnimation";
 
-const geist = Geist({
-  variable: "--font-geist-sans",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -26,9 +29,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} ${inter.variable}`}>
-      <body className="bg-bg-base text-text-primary font-body antialiased overflow-x-hidden">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
+      <body className="bg-bg-dark text-white font-body antialiased overflow-x-hidden cursor-none">
+        <SmoothScrollProvider>
+          <IntroAnimation />
+          <CustomCursor />
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );
